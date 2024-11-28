@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flipping game</title>
+    <style>
+        *{
+            padding: 0px;
+            margin:0px;
+            box-sizing: border-box;
+        }
+        body{
+            height:100vh;
+            display:flex;
+            background-color: rgb(25, 25, 25);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .maindiv{
+            margin:30px;
+        }
+        #login{
+            height:200px;
+            width:450px;
+            background-color: rgb(100, 154, 220);
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:10px;
+            padding:20px;
+            border-radius: 15px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color:white;
+        }
+        #levels{
+            background-color:rgb(0, 250, 154);
+            height:300px;
+            width:350px;
+            border-radius: 15px;
+            padding:10px;
+            display:none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:20px;
+            color:black;
+            margin-bottom: 10px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            
+        }
+        #firstlevel{
+            height:auto;
+            width:400px;
+            background-color:rgb(67, 66, 66);
+            border-radius: 15px;
+            padding:20px;
+            display:none;
+            /* flex-direction: column; */
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+
+        }
+        #levelnumbers{
+            height:auto;
+            width:auto;
+            color:black;
+            background-color: #fff;
+            border-radius: 15px;
+            padding:20px;
+            display:none;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+        }
+        .box{
+            height: 80px;
+            width:80px;
+            background-color: aqua;
+            border-radius: 5px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+            position:relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ;
+            perspective: 1000px;
+
+            
+        }
+        /* .box:hover,.card.flip.front{
+            transform:rotateY(180deg)
+        } */
+        .front{
+            background-color:mediumorchid;
+        }
+        .back{
+            background-color:mediumspringgreen;
+            transform:rotateY(180deg);
+
+        }
+        .front,.back{
+            font-size: 50px;
+            position:absolute;
+            height: 80px;
+            width:80px;
+            /* background-color: aqua; */
+            border-radius: 5px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+            color:white;
+            backface-visibility: hidden;  
+
+        }
+        .ball{
+            height:100px;
+            width:100px;
+            border-radius: 50%;
+            background-color: crimson;
+            margin:10px;
+        }
+        #clickme{
+            padding: 6px;
+            border-radius: 10px;
+            border:none;
+            background-color: black;
+            color:beige;
+            width:100px;
+            margin-top:10px;
+        }
+        .levelbtn{
+            padding:5px;
+            border-radius: 10px;
+            width:90px;
+            border:none;
+        }
+        #imgbtn{
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap:40px;
+        }
+        .element{
+            display:flex;
+            gap:20px;
+            height:41px;
+            width:100%;
+            padding:10px;
+            border-radius: 10px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(54, 53, 53,0.9);
+        }
+        #scoredetails{
+            display: flex;
+            gap:80px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .button{
+            width:100px;
+            height:30px;
+            padding:5px;
+            border:none;
+            border-radius: 15px;
+            background-color: rgb(56, 54, 54);
+            color:beige;
+            font-size: 15px;
+        }
+        #footer{
+            display:flex;
+            /* flex-direction: column; */
+            justify-content: center;
+            align-items: center;
+            gap:10px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <marquee behavior="alternate" direction="right"  scrollamount="50"  >
+        <div class="ball"></div>
+    </marquee>
+    
+    <marquee behavior="alternate" direction="right"  scrollamount="20" class="marq1">
+        <div class="ball " style="background-color:lightgreen"></div>
+    </marquee>
+    <div class="maindiv">
+        <div id="login">
+            <h1> Do you want to have fun</h1>
+            <h3>lets play flipping card game</h3>
+            <div id="imgbtn">
+                <img src="img.png" alt="" height="100px" width="100px">
+                <button id="clickme">click me</button>
+            </div>
+        </div>
+        <div id="levels">
+            <h1>levels</h1>
+            <div class="element">
+                <img src="https://clipground.com/images/level-1-png-3.png" alt="" height="40px">
+                <button class="levelbtn" id="level1">Play now</button>
+            </div>
+            <div class="element">
+                <img src="https://dharmamerchantservices.com/wp-content/uploads/2015/05/level-2-icon.png" alt="" height="40px">
+                <button class="levelbtn" id="level2">Play now</button>
+            </div>
+            <div class="element">
+                <img src="https://dharmamerchantservices.com/wp-content/uploads/2015/05/level-3-icon.png" alt="" height="40px">
+                <button class="levelbtn" id="level3">Play now</button>
+            </div>
+            <button class="levelbtn" id="levelbtn">back</button>
+        </div>
+        <div id="levelnumbers">
+            <h1 id="gameover"></h1>
+            <h1 id="gameover1"></h1>
+            <h1 id="gameover2"></h1>
+            <h1 id="levelitem">levels</h1>
+            <div id="scoredetails">
+                <h3 id="scores">Score:</h3>
+                <h3 id="attempts">Attempts:</h3>
+                <h3 id="timmer">Timer:</h3>
+            </div>
+            <div id="firstlevel">
+                <div class="box">
+                    <div class="front">?</div>
+                    <div class="back">1</div>
+                </div>
+                <div class="box">
+                    <div class="front">?</div>
+                    <div class="back">1</div>
+                </div>
+                <div class="box">
+                    <div class="front">?</div>
+                    <div class="back">1</div>
+                </div>
+                <div class="box">
+                    <div class="front">?</div>
+                    <div class="back">1</div>
+                </div>
+            </div>
+            <div id="footer">
+            <button id="backtolevels" class="button">Back</button>
+            <button id="reset" class="button">reset</button>
+            </div >
+        </div>
+    </div>
+    <marquee behavior="alternate" direction="left" scrollamount="40"class="marq2">
+        <div class="ball" style="background-color:hotpink;"></div>
+    </marquee>
+
+    <marquee behavior="alternate" direction="right"  scrollamount="55" width="100%" id="marq3" >
+        <div class="ball" style="background-color:mediumpurple;"></div>
+    </marquee>
+    
+<script>
+    const login=document.getElementById("login")
+    const levels=document.getElementById("levels")
+    const clickme=document.getElementById("clickme")
+    const marq1=document.querySelector(".marq1")
+    const marq2=document.querySelector(".marq2")
+
+    const levelbtn=document.getElementById("levelbtn")
+    const firstlevel=document.getElementById("firstlevel")
+    const level1=document.getElementById("level1")
+    const level2=document.getElementById("level2")
+    const level3=document.getElementById("level3")
+    const levelnumbers=document.getElementById("levelnumbers")
+    const levelitem=document.getElementById("levelitem")
+    const scores=document.getElementById("scores")
+    const timmer=document.getElementById("timmer")
+    const attempts=document.getElementById("attempts")
+    const backtolevels=document.getElementById("backtolevels")
+    const reset=document.getElementById("reset")
+    const ball=document.querySelector(".ball")
+    const gameover=document.getElementById("gameover");
+    const gameover1=document.getElementById("gameover1");
+    const gameover2=document.getElementById("gameover2");
+    const marq3=document.getElementById("marq3")
+    const box=document.querySelector(".box")
+
+
+    // var value=2;
+    const boxitems=[ "😊","😄","😎","🥳","😢","😡","😱","😴","🤔","🥰"]
+    function shuffel(valueofbox){
+        const carditems1=([...boxitems.slice(0,`${valueofbox}`),...boxitems.slice(0,`${valueofbox}`)])
+        return Array.from(carditems1).sort(()=>0.5 - Math.random())
+    
+    }
+    // console.log(shuffledarray)
+    clickme.addEventListener("click",()=>{
+        login.style.display="none"
+        levels.style.display="flex"
+        marq1.style.display="none"
+        marq2.style.display="none"
+    })
+    levelbtn.addEventListener("click",()=>{
+        login.style.display="flex"
+        levels.style.display="none"
+        
+    })
+    backtolevels.addEventListener("click",()=>{
+        levelnumbers.style.display="none"
+        levels.style.display="flex"
+        scores.innerHTML="Score:"
+        attempts.innerHTML="Attempts:"
+        timmer.innerHTML=`Timmer:`
+        gameover.innerHTML="";
+        gameover1.innerHTML="";
+        gameover2.innerHTML="";  
+    })
+    
+    let score=0
+    let timer=0
+    let attempt=0
+    let matches=0
+    const flippedCards = [];
+        function flipcard(box, value) {
+            box.classList.add("flip");
+            box.style.transform = "rotateY(180deg)";
+            flippedCards.push({ box, value });
+            attempt+=1
+            attempts.innerHTML=`Attempts:${attempt}`
+            console.log(attempts)
+                     
+            console.log(flippedCards); 
+            if (flippedCards.length === 2) {
+                if (flippedCards[0].value === flippedCards[1].value) {
+                    score=score+100
+                    scores.innerHTML=`Scores:${score}`
+                    console.log(score)
+                    console.log("It's a match!");
+                    matches++
+                    console.log("saba",matches)
+                    // console.log("boxitemss",(shuffel(valueofbox)).length)
+                    if (matches===2){
+                        gameover.innerHTML="Congratulation 🎊 "
+                    }
+                               
+                    if(matches===4){
+                        gameover.style.display="none"                      
+                        gameover1.innerHTML="Congratulation 🎊 "
+                    }
+                    if (matches===8){
+                        gameover.style.display="none"             
+                        gameover1.style.display="none"
+                        gameover2.innerHTML="Congratulation 🎊 "
+                    }
+                    flippedCards.length = 0;
+                } else {
+                    console.log("Not a match, flipping back...")
+                    setTimeout(() => {
+                        flippedCards.forEach(item => {
+                            item.box.style.transform = ""; 
+                            item.box.classList.remove("flip");
+                        });
+                        flippedCards.length = 0;
+                    }, 1000);
+                }
+            }
+            
+        }
+        
+        level1.addEventListener("click", () => {
+            timmer.innerHTML=`Timmer:`    
+            attempt=0
+            var valueofbox = 2;
+            cards = shuffel(valueofbox);
+            levels.style.display = "none";
+            firstlevel.style.display = "flex";
+            levelnumbers.style.display="flex";
+            levelitem.innerHTML="level-1"
+            
+            firstlevel.innerHTML = "";
+            cards.forEach(element => {
+                firstlevel.innerHTML += `
+                    <div class="box" onclick="flipcard(this, '${element}')">
+                        <div class="front">?</div>
+                        <div class="back">${element}</div>
+                    </div>`;
+            });
+            setInterval(()=>{
+                timer+=1
+                console.log(timer)
+                timmer.innerHTML=`Timmer:${timer}`
+
+                if (timer==100){
+                    alert(`game over ${score} and ${timer}`)
+                    timmer.innerHTML="Timmer:"
+
+                }
+            },1000)
+
+        });
+
+        level2.addEventListener("click", () => {
+            gameover.innerHTML=""
+            timmer.innerHTML=`Timmer:`
+            attempt=0    
+            var valueofbox = 4;
+            cards = shuffel(valueofbox);
+            levels.style.display = "none";
+            firstlevel.style.display = "flex";
+            levelnumbers.style.display="flex";
+            levelitem.innerHTML="level-2"
+
+            firstlevel.innerHTML = "";
+            cards.forEach(element => {
+                firstlevel.innerHTML += `
+                    <div class="box" onclick="flipcard(this, '${element}')">
+                        <div class="front">?</div>
+                        <div class="back">${element}</div>
+                    </div>`;
+            });
+            timer=0
+            setInterval(()=>{
+                timer+=1
+                // timmer.innerHTML=`Timmer:${timer}`
+
+                console.log(timer)
+                if (timer==20){
+                    alert(`game over ${score} and ${timer}`)
+                }
+            },1000)
+
+        });
+
+        level3.addEventListener("click", () => {
+            gameover.innerHTML=""
+            // marq3.style.height="20px"
+            // marq3.style.width="20px"
+
+
+            timmer.innerHTML=`Timmer:`
+            attempt=0    
+            var valueofbox = 8;
+            cards = shuffel(valueofbox);
+            levels.style.display = "none";
+            firstlevel.style.display = "flex";
+            levelnumbers.style.display="flex";
+            levelitem.innerHTML="level-3"
+            firstlevel.innerHTML = "";
+            cards.forEach(element => {
+                firstlevel.innerHTML += `
+                    <div class="box" onclick="flipcard(this, '${element}')">
+                        <div class="front">?</div>
+                        <div class="back">${element}</div>
+                    </div>`;
+            });
+            timer=0
+            setInterval(()=>{
+                timer+=1
+                timmer.innerHTML=`Timmer:${timer}`
+
+                console.log(timer)
+                if (timer==25){
+                    alert(`game over  score:${score} and  time in sec:${timer}`)
+                }
+            },1000)
+
+        });
+        reset.addEventListener("click",()=>{
+        scores.innerHTML="Score:"
+        attempts.innerHTML="Attempts:"
+
+        timmer.innerHTML="Timmer:"
+        item.box.style.transform = ""; 
+        gameover.innerHTML="";
+        gameover1.innerHTML="";
+        gameover2.innerHTML="";  
+    
+
+        timer=0;
+        setInterval(()=>{
+                timer+=0
+                console.log(timer)
+                timmer.innerHTML=`Timmer:${timer}`
+
+                // if (timer==10){
+                //     alert(`game over ${score} and ${timer}`)
+                // }
+            },1000)
+
+        })
+    
+</script>
+</body>
+</html>
